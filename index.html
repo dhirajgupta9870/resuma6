@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhiraj Kumar Gupta - Professional Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Light Mode Colors - Darker & Deeper */
+            --bg-gradient-1: #3d3f8f;
+            --bg-gradient-2: #5a3a7f;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-text: #333;
+            --primary-color: #4444a8;
+            --secondary-color: #6b3f9f;
+            --tab-inactive-bg: rgba(255, 255, 255, 0.2);
+            --tab-inactive-border: rgba(255, 255, 255, 0.3);
+            --tab-inactive-text: white;
+            --tab-active-bg: rgba(255, 255, 255, 0.95);
+            --tab-active-text: #4444a8;
+        }
+
+        body.dark-mode {
+            --bg-gradient-1: #0f1027;
+            --bg-gradient-2: #1a0f2e;
+            --card-bg: rgba(20, 15, 40, 0.95);
+            --card-text: #e8e8f0;
+            --primary-color: #7a7dff;
+            --secondary-color: #b89fff;
+            --tab-inactive-bg: rgba(255, 255, 255, 0.08);
+            --tab-inactive-border: rgba(255, 255, 255, 0.15);
+            --tab-inactive-text: #d0d0d8;
+            --tab-active-bg: rgba(122, 125, 255, 0.15);
+            --tab-active-text: #b89fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            transition: background 0.3s ease;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Full-Screen Sections */
+        .section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Hide Tab Navigation */
+        .tab-nav {
+            display: none;
+        }
+
+        .tab-btn {
+            background: var(--tab-inactive-bg);
+            color: var(--tab-inactive-text);
+            border: 2px solid var(--tab-inactive-border);
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-active-bg);
+            color: var(--tab-active-text);
+            border-color: white;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+        }
+
+        /* Left Panel - Resume Details */
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .resume-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: slideInLeft 0.8s ease forwards;
+            transition: all 0.3s ease;
+        }
+
+        .personal-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 240px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 4px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .personal-info-text {
+            width: 100%;
+        }
+
+        .resume-card:nth-child(1) { animation-delay: 0.3s; }
+        .resume-card:nth-child(2) { animation-delay: 0.6s; }
+        .resume-card:nth-child(3) { animation-delay: 0.9s; }
+
+        @keyframes slideInLeft {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-content {
+            font-size: 13px;
+            color: var(--card-text);
+            line-height: 1.8;
+        }
+
+        .card-content strong {
+            color: var(--secondary-color);
+        }
+
+        .contact-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Center - Photo */
+        .center-panel {
+            display: none;
+        }
+
+        /* Right Panel - Resume Details */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .resume-card {
+            transform: translateX(50px);
+        }
+
+        .right-panel .resume-card {
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .right-panel .resume-card:nth-child(1) { animation-delay: 0.3s; }
+        .right-panel .resume-card:nth-child(2) { animation-delay: 0.6s; }
+        .right-panel .resume-card:nth-child(3) { animation-delay: 0.9s; }
+
+        @keyframes slideInRight {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .rating {
+            display: flex;
+            gap: 3px;
+            margin-top: 8px;
+        }
+
+        .star {
+            color: #ffd54f;
+            font-size: 12px;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .profile-photo {
+                width: 180px;
+                height: 220px;
+            }
+        }
+
+        .scroll-indicator {
+            color: white;
+            text-align: center;
+            font-size: 12px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: pulse 2s ease 2s infinite forwards;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Social Links Section */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid transparent;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: var(--secondary-color);
+            border-color: white;
+        }
+
+        .social-link.linkedin {
+            background: linear-gradient(135deg, #0077b5 0%, #0088cc 100%);
+        }
+
+        .social-link.linkedin:hover {
+            background: linear-gradient(135deg, #005885 0%, #0066aa 100%);
+        }
+
+        .social-link.github {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+        }
+
+        .social-link.github:hover {
+            background: linear-gradient(135deg, #111 0%, #333 100%);
+        }
+
+        .social-link.portfolio {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        .social-link.portfolio:hover {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+        }
+
+        body.dark-mode .social-link {
+            box-shadow: 0 4px 15px rgba(122, 125, 255, 0.3);
+        }
+
+        body.dark-mode .social-link:hover {
+            box-shadow: 0 8px 25px rgba(122, 125, 255, 0.5);
+        }
+
+        /* Floating Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 999;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        .nav-dot.active {
+            background: white;
+            transform: scale(1.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+
+        body.dark-mode .nav-dot {
+            background: rgba(122, 125, 255, 0.5);
+            border-color: rgba(122, 125, 255, 0.7);
+        }
+
+        body.dark-mode .nav-dot.active {
+            background: #b89fff;
+            box-shadow: 0 0 15px rgba(122, 125, 255, 0.8);
+        }
+
+        /* Timeline Styling */
+        .timeline {
+            position: relative;
+            padding: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            top: 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+            padding-right: 52%;
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: left;
+            padding-left: 52%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--card-bg);
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: translateX(-50%) scale(1.3);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        .timeline-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .timeline-year {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--card-text);
+            margin-bottom: 5px;
+        }
+
+        .timeline-subtitle {
+            font-size: 13px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            font-size: 13px;
+            color: var(--card-text);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                text-align: left;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+
+            .timeline-dot {
+                left: 15px;
+            }
+
+            .nav-dots {
+                display: none;
+            }
+
+            .section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
+
+    <div class="main-wrapper">
+        <!-- Floating Navigation Dots -->
+        <div class="nav-dots">
+            <div class="nav-dot active" onclick="scrollToSection('welcome-section')" title="Welcome"></div>
+            <div class="nav-dot" onclick="scrollToSection('about-section')" title="About"></div>
+            <div class="nav-dot" onclick="scrollToSection('timeline-section')" title="Timeline"></div>
+            <div class="nav-dot" onclick="scrollToSection('skills-section')" title="Skills"></div>
+        </div>
+
+        <!-- Section 1: Welcome Hero -->
+        <div id="welcome-section" class="section welcome-section">
+            <div class="section-content">
+                <div class="container">
+                    <div class="left-panel">
+                        <div class="resume-card" style="text-align: center; padding: 50px 30px;">
+                            <div style="font-size: 48px; margin-bottom: 20px;">👋</div>
+                            <h1 style="color: var(--primary-color); font-size: 42px; margin-bottom: 15px;">Welcome to My Resume</h1>
+                            <p style="color: var(--card-text); font-size: 16px; line-height: 1.8;">
+                                Hello! I'm <strong>Dhiraj Kumar Gupta</strong>, a B.Tech Computer Science Engineering student from Nepal.
+                                Scroll down to learn more about my background, education, skills, and strengths.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-panel">
+                        <div class="resume-card personal-card">
+                            <img src="profile.jpg" alt="Dhiraj Kumar Gupta" class="profile-photo">
+                            <div style="text-align: center; margin-top: 15px; color: var(--primary-color); font-weight: 700;">
+                                Dhiraj Kumar Gupta
+                            </div>
+                            <div style="text-align: center; color: var(--secondary-color); font-size: 14px; margin-top: 5px;">
+                                B.Tech CSE Student
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/your-profile" target="_blank" class="social-link linkedin" title="Visit LinkedIn Profile">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.731-2.004 1.438-.103.249-.129.597-.129.946v5.421h-3.554s.047-8.733 0-9.637h3.554v1.365c.425-.654 1.185-1.586 2.882-1.586 2.105 0 3.684 1.377 3.684 4.342v5.516zM5.337 8.855c-1.144 0-1.915-.758-1.915-1.705 0-.953.768-1.706 1.959-1.706 1.188 0 1.914.758 1.938 1.706 0 .947-.75 1.705-1.982 1.705zm1.946 11.597H3.392V9.815h3.891v10.637zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/your-username" target="_blank" class="social-link github" title="Visit GitHub Profile">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://your-portfolio-link" target="_blank" class="social-link portfolio" title="Visit Portfolio">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                        <polyline points="13 2 13 9 20 9"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: About/Personal -->
+        <div id="about-section" class="section about-section">
+            <div class="section-content">
+                <div class="container">
+                    <div class="left-panel">
+                        <div class="resume-card personal-card">
+                            <img src="profile.jpg" alt="Dhiraj Kumar Gupta" class="profile-photo">
+                            <div class="card-title" style="width: 100%; text-align: center; margin-top: 10px;">👤 Personal Information</div>
+                            <div class="card-content personal-info-text">
+                                <strong>Name:</strong> Dhiraj Kumar Gupta<br><br>
+                                <strong>Phone:</strong> <span class="contact-link">9296305829</span><br>
+                                <strong>Email:</strong> <a href="mailto:dhirajgupta9870@gmail.com" class="contact-link">dhirajgupta9870@gmail.com</a><br><br>
+                                <strong>Location:</strong> Inaruwa, Sunsari, Nepal<br>
+                                <strong>DOB:</strong> 13 September 2005<br>
+                                <strong>Nationality:</strong> Nepali
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-panel">
+                        <div class="resume-card">
+                            <div class="card-title">🌐 Languages</div>
+                            <div class="card-content">
+                                <span class="badge">🇳🇵 Nepali</span><span class="badge">🇮🇳 Hindi</span><span class="badge">🇬🇧 English</span><br><br>
+                                <strong>Nepali:</strong> Fluent<br>
+                                <strong>Hindi:</strong> Good<br>
+                                <strong>English:</strong> Basic/Intermediate
+                            </div>
+                        </div>
+                        <div class="resume-card">
+                            <div class="card-title">💡 Professional Objective</div>
+                            <div class="card-content">
+                                Motivated and dedicated B.Tech CSE student seeking opportunities to develop technical skills and gain practical experience in computer science and web development.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Timeline -->
+        <div id="timeline-section" class="section timeline-section">
+            <div class="section-content">
+                <h2 style="text-align: center; color: var(--primary-color); font-size: 36px; margin-bottom: 50px;">📅 Education & Experience Timeline</h2>
+                <div class="timeline">
+                    <!-- 2023 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-title">Bachelor of Technology (B.Tech)</div>
+                            <div class="timeline-subtitle">Computer Science Engineering</div>
+                            <div class="timeline-description">
+                                <strong>University:</strong> Noida International University, India<br>
+                                <strong>Status:</strong> Ongoing (2023 - Present)<br><br>
+                                <strong>Focus Areas:</strong><br>
+                                • Web Development<br>
+                                • Computer Science Fundamentals<br>
+                                • Programming Languages<br>
+                                • Database Management
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2024 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-title">Academic Progress</div>
+                            <div class="timeline-subtitle">Continuing Studies & Learning</div>
+                            <div class="timeline-description">
+                                <strong>Key Achievements:</strong><br>
+                                • Completed foundational courses<br>
+                                • Actively learning web technologies<br>
+                                • Developing practical projects<br>
+                                • Building problem-solving skills<br>
+                                • Strengthening programming knowledge
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-title">Future Goals</div>
+                            <div class="timeline-subtitle">Next Phase</div>
+                            <div class="timeline-description">
+                                <strong>Upcoming:</strong><br>
+                                • Complete B.Tech degree<br>
+                                • Gain practical internship experience<br>
+                                • Build portfolio projects<br>
+                                • Explore career opportunities
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Skills & Strengths -->
+        <div id="skills-section" class="section skills-section">
+            <div class="section-content">
+                <div class="container">
+                    <div class="left-panel">
+                        <div class="resume-card">
+                            <div class="card-title">🧠 Core Skills</div>
+                            <div class="card-content">
+                                <span class="badge">Web Development</span><span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span><br>
+                                <span class="badge">MS Office</span><span class="badge">Research</span><br><br>
+                                <strong>Technical Competencies:</strong><br>
+                                • Frontend Development<br>
+                                • HTML5 & CSS3<br>
+                                • JavaScript Programming<br>
+                                • Quick learner and problem solver<br>
+                                • Strong foundational knowledge
+                            </div>
+                        </div>
+                        <div class="resume-card">
+                            <div class="card-title">💪 Key Strengths</div>
+                            <div class="card-content">
+                                <strong>⭐ Quick Learner</strong><br>
+                                Rapidly absorbs new concepts and technologies<br><br>
+                                <strong>⭐ Hardworking & Disciplined</strong><br>
+                                Committed to excellence and consistent effort<br><br>
+                                <strong>⭐ Positive Attitude</strong><br>
+                                Optimistic and solution-focused approach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-panel">
+                        <div class="resume-card">
+                            <div class="card-title">⚙️ Technical Background</div>
+                            <div class="card-content">
+                                <strong>Programming:</strong><br>
+                                • JavaScript<br>
+                                • HTML5<br>
+                                • CSS3<br><br>
+                                <strong>Tools & Platforms:</strong><br>
+                                • Microsoft Office Suite<br>
+                                • Web Development Tools<br>
+                                • Research & Analytics
+                            </div>
+                        </div>
+                        <div class="resume-card">
+                            <div class="card-title">🤝 Interpersonal Skills</div>
+                            <div class="card-content">
+                                <strong>⭐ Good Communication</strong><br>
+                                Clear and effective verbal & written skills<br><br>
+                                <strong>⭐ Team Player</strong><br>
+                                Collaborative approach to projects<br><br>
+                                <strong>⭐ Problem Solver</strong><br>
+                                Analytical and creative thinking
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Toggle Function
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.querySelector('.theme-toggle');
+
+            body.classList.toggle('dark-mode');
+
+            // Update toggle button icon
+            if (body.classList.contains('dark-mode')) {
+                toggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const toggle = document.querySelector('.theme-toggle');
+
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                toggle.textContent = '☀️';
+            } else {
+                document.body.classList.remove('dark-mode');
+                toggle.textContent = '🌙';
+            }
+
+            // Tab switching functionality
+            window.showTab = function(tabName) {
+                // Hide all tab contents
+                const allTabs = document.querySelectorAll('.tab-content');
+                allTabs.forEach(tab => {
+                    tab.classList.remove('active');
+                });
+
+                // Remove active class from all buttons
+                const allButtons = document.querySelectorAll('.tab-btn');
+                allButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                // Show selected tab
+                document.getElementById(tabName).classList.add('active');
+
+                // Find and activate the clicked button
+                allButtons.forEach(btn => {
+                    if (btn.getAttribute('onclick').includes(tabName)) {
+                        btn.classList.add('active');
+                    }
+                });
+            };
+
+            // Interactive hover effect on cards
+            document.querySelectorAll('.resume-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.3)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
